@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabrina Kaduk | Operations · Growth Marketing · QA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-light: #1e1e2e;
+            --text: #f0f0f5;
+            --text-muted: #a0a0b0;
+            --text-dim: #6a6a7a;
+            --accent-pink: #ff6b9d;
+            --accent-magenta: #c084fc;
+            --accent-cyan: #00d4aa;
+            --accent-gold: #ffd700;
+            --accent-rose: #fb7185;
+            --border: rgba(255,255,255,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+
+        /* PARTICLES */
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
+        .particle { position: absolute; border-radius: 50%; opacity: 0.4; animation: particle-float linear infinite; }
+        @keyframes particle-float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.4; } 90% { opacity: 0.4; } 100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; } }
+
+        /* MESH GRADIENT */
+        .bg-mesh { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(255,107,157,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0,212,170,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(192,132,252,0.05) 0%, transparent 60%);
+            pointer-events: none; }
+
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); z-index: 1000; padding: 0 5%; height: 70px; display: flex;
+            align-items: center; justify-content: space-between; transition: all 0.3s; }
+        .navbar.scrolled { background: rgba(10,10,15,0.95); box-shadow: 0 4px 30px rgba(255,107,157,0.1); }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-magenta)); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.9rem;
+            transition: all 0.3s; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-pink); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-magenta)); transition: width 0.3s; border-radius: 2px; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .lang-switcher { display: flex; gap: 0.4rem; background: rgba(255,255,255,0.04); padding: 0.3rem;
+            border-radius: 12px; border: 1px solid var(--border); }
+        .lang-btn { padding: 0.4rem 0.9rem; border: none; background: transparent; border-radius: 8px;
+            cursor: pointer; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); transition: all 0.3s; }
+        .lang-btn.active { background: linear-gradient(135deg, var(--accent-pink), var(--accent-magenta)); color: white; }
+        .lang-btn:hover:not(.active) { color: var(--text); }
+
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 100px 5% 60px; position: relative; overflow: hidden; }
+        .hero-glow { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.25; animation: float-glow 10s ease-in-out infinite; }
+        .hero-glow.pink { background: var(--accent-pink); width: 600px; height: 600px; top: -10%; right: -10%; animation-delay: 0s; }
+        .hero-glow.cyan { background: var(--accent-cyan); width: 500px; height: 500px; bottom: -10%; left: -10%; animation-delay: -5s; }
+        .hero-glow.gold { background: var(--accent-gold); width: 400px; height: 400px; top: 40%; left: 30%; animation-delay: -2.5s; opacity: 0.15; }
+        @keyframes float-glow { 0%,100%{transform:translate(0,0)scale(1)} 33%{transform:translate(40px,-40px)scale(1.15)} 66%{transform:translate(-30px,30px)scale(0.9)} }
+        .hero-content { max-width: 900px; text-align: center; position: relative; z-index: 1; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,107,157,0.1);
+            border: 1px solid rgba(255,107,157,0.25); padding: 0.6rem 1.5rem; border-radius: 50px; font-size: 0.85rem;
+            font-weight: 500; color: var(--accent-pink); margin-bottom: 2rem; animation: pulse-badge 2s ease-in-out infinite; }
+        @keyframes pulse-badge { 0%,100%{opacity:1;box-shadow:0 0 0 rgba(255,107,157,0)} 50%{opacity:0.85;box-shadow:0 0 20px rgba(255,107,157,0.2)} }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 4rem; font-weight: 700; margin-bottom: 1rem;
+            line-height: 1.1; letter-spacing: -0.02em; }
+        .hero h1 .gradient-text { background: linear-gradient(135deg, var(--accent-pink), var(--accent-magenta), var(--accent-cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: 1.4rem; font-weight: 300; color: var(--text-muted); margin-bottom: 1.5rem; }
+        .hero-pitch { font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); max-width: 650px; margin: 0 auto 2.5rem; }
+        .hero-pitch strong { color: var(--text); }
+        .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .stat-item { text-align: center; padding: 1.2rem 2rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            border-radius: 20px; transition: all 0.4s; position: relative; overflow: hidden; }
+        .stat-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-magenta)); opacity: 0; transition: opacity 0.3s; }
+        .stat-item:hover { border-color: rgba(255,107,157,0.3); transform: translateY(-8px); box-shadow: 0 20px 50px rgba(255,107,157,0.15); }
+        .stat-item:hover::before { opacity: 1; }
+        .stat-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-magenta)); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text; display: block; }
+        .stat-label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; }
+        .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 1rem 2.5rem; border-radius: 14px; font-weight: 600; font-size: 0.95rem; text-decoration: none;
+            transition: all 0.3s; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 0.5rem;
+            position: relative; overflow: hidden; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-pink), var(--accent-magenta)); color: white; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,107,157,0.4); }
+        .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+        .btn-outline:hover { border-color: var(--accent-pink); color: var(--accent-pink); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,107,157,0.1); }
+
+        /* SECTIONS */
+        section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(192,132,252,0.1);
+            border: 1px solid rgba(192,132,252,0.2); color: var(--accent-magenta); padding: 0.4rem 1.2rem;
+            border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* ABOUT */
+        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; }
+        .about-image { position: relative; }
+        .about-image img { width: 100%; border-radius: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.4); border: 2px solid rgba(255,255,255,0.05); transition: all 0.4s; }
+        .about-image:hover img { transform: scale(1.02); box-shadow: 0 30px 70px rgba(255,107,157,0.15); }
+        .about-image::before { content: ''; position: absolute; top: -15px; left: -15px; width: 100%; height: 100%;
+            border: 2px solid var(--accent-pink); border-radius: 24px; z-index: -1; opacity: 0.4; animation: border-glow 3s ease-in-out infinite alternate; }
+        .about-image::after { content: ''; position: absolute; bottom: -15px; right: -15px; width: 100%; height: 100%;
+            border: 2px solid var(--accent-cyan); border-radius: 24px; z-index: -1; opacity: 0.4; animation: border-glow 3s ease-in-out infinite alternate 1.5s; }
+        @keyframes border-glow { from { opacity: 0.3; } to { opacity: 0.6; } }
+        .about-content h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-magenta)); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text; }
+        .about-content p { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 1.05rem; line-height: 1.8; }
+        .about-content strong { color: var(--text); }
+        .languages { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .lang-item { display: flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            padding: 0.8rem 1.2rem; border-radius: 12px; font-size: 0.9rem; transition: all 0.3s; }
+        .lang-item:hover { border-color: var(--accent-pink); transform: translateY(-2px); }
+        .lang-level { width: 60px; height: 6px; background: var(--bg-light); border-radius: 3px; overflow: hidden; }
+        .lang-level-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent-pink), var(--accent-magenta)); }
+
+        /* SKILLS */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .skill-card { background: linear-gradient(145deg, #12121a 0%, #0a0a0f 100%); border: 1px solid var(--border);
+            border-radius: 24px; padding: 2.5rem; transition: all 0.4s; position: relative; overflow: hidden; }
+        .skill-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-magenta), var(--accent-cyan)); }
+        .skill-card:hover { transform: translateY(-8px); border-color: rgba(255,107,157,0.2); box-shadow: 0 25px 60px rgba(255,107,157,0.12); }
+        .skill-card h3 { font-size: 1.3rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+        .skill-card h3 i { width: 44px; height: 44px; background: linear-gradient(135deg, rgba(255,107,157,0.15), rgba(192,132,252,0.15));
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-pink); font-size: 1.1rem; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .skill-tag { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 0.5rem 1rem;
+            border-radius: 20px; font-size: 0.85rem; color: var(--text-muted); transition: all 0.3s; cursor: default; }
+        .skill-tag:hover { border-color: var(--accent-pink); color: var(--accent-pink); background: rgba(255,107,157,0.05); transform: translateY(-2px); }
+        .skill-tag.highlight { background: linear-gradient(135deg, rgba(255,107,157,0.12), rgba(192,132,252,0.12));
+            border-color: rgba(255,107,157,0.3); color: var(--accent-pink); font-weight: 500; }
+        .skill-tag.trending { background: linear-gradient(135deg, rgba(0,212,170,0.1), rgba(255,215,0,0.1));
+            border-color: rgba(0,212,170,0.3); color: var(--accent-cyan); font-weight: 500; position: relative; }
+        .skill-tag.trending::after { content: '🔥'; font-size: 0.7rem; margin-left: 0.3rem; }
+
+        /* PROJECTS */
+        .projects-grid { display: flex; flex-direction: column; gap: 3rem; }
+        .project-card { background: linear-gradient(145deg, #12121a 0%, #0a0a0f 100%); border: 1px solid var(--border);
+            border-radius: 24px; overflow: hidden; transition: all 0.4s; }
+        .project-card:hover { border-color: rgba(192,132,252,0.2); box-shadow: 0 30px 70px rgba(0,0,0,0.4); }
+        .project-header { padding: 2.5rem 2.5rem 0; display: flex; justify-content: space-between; align-items: flex-start;
+            flex-wrap: wrap; gap: 1.5rem; }
+        .project-title-area h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .project-category { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,107,157,0.1);
+            border: 1px solid rgba(255,107,157,0.2); color: var(--accent-pink); padding: 0.4rem 1rem; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .project-kpis { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .kpi-box { text-align: center; padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            border-radius: 16px; min-width: 130px; transition: all 0.3s; }
+        .kpi-box:hover { border-color: var(--accent-gold); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,215,0,0.1); }
+        .kpi-number { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-pink)); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text; display: block; }
+        .kpi-label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+        .project-body { padding: 2rem 2.5rem; }
+        .star-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .star-item { padding: 1.5rem; background: rgba(255,255,255,0.015); border-radius: 16px; border-left: 3px solid var(--accent-pink); transition: all 0.3s; }
+        .star-item:hover { background: rgba(255,255,255,0.03); transform: translateX(5px); }
+        .star-item h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-pink); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+        .star-item p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+        .project-chart { margin: 2rem 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); transition: all 0.3s; }
+        .project-chart:hover { border-color: rgba(255,107,157,0.3); box-shadow: 0 15px 40px rgba(255,107,157,0.1); }
+        .project-chart img { width: 100%; display: block; }
+        .project-tools { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+        .tool-tag { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            padding: 0.4rem 0.9rem; border-radius: 8px; font-size: 0.8rem; color: var(--text-dim); transition: all 0.3s; }
+        .tool-tag:hover { border-color: var(--accent-magenta); color: var(--accent-magenta); }
+        .project-table-container { background: rgba(255,255,255,0.015); border-radius: 16px; padding: 1.5rem; border: 1px solid var(--border); overflow-x: auto; }
+        .table-search { width: 100%; max-width: 400px; padding: 0.75rem 1rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+            border-radius: 10px; font-size: 0.9rem; color: var(--text); margin-bottom: 1rem; font-family: 'Inter', sans-serif; }
+        .table-search:focus { outline: none; border-color: var(--accent-pink); }
+        .table-search::placeholder { color: var(--text-dim); }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .data-table th { background: linear-gradient(135deg, rgba(255,107,157,0.1), rgba(192,132,252,0.1)); color: var(--accent-pink);
+            padding: 0.9rem 1rem; text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+        .data-table td { padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+        .data-table tr:hover td { background: rgba(255,107,157,0.03); color: var(--text); }
+        .status-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .status-completed { background: rgba(0,212,170,0.15); color: var(--accent-cyan); }
+        .status-progress { background: rgba(255,215,0,0.15); color: var(--accent-gold); }
+        .status-pending { background: rgba(255,107,157,0.15); color: var(--accent-pink); }
+        .project-footer { padding: 0 2.5rem 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-small { padding: 0.7rem 1.4rem; font-size: 0.85rem; border-radius: 10px; }
+        .timeline-chart { margin: 2rem 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: all 0.3s; }
+        .timeline-chart:hover { border-color: rgba(192,132,252,0.3); }
+        .timeline-chart img { width: 100%; display: block; }
+
+        /* CONTACT */
+        .contact-section { background: linear-gradient(145deg, #1a0a1a 0%, #0a0a0f 100%); border: 1px solid var(--border);
+            border-radius: 24px; padding: 4rem; text-align: center; position: relative; overflow: hidden; }
+        .contact-section::before { content: ''; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(255,107,157,0.2) 0%, transparent 70%); border-radius: 50%; }
+        .contact-section::after { content: ''; position: absolute; bottom: -80px; left: -80px; width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(0,212,170,0.15) 0%, transparent 70%); border-radius: 50%; }
+        .contact-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; margin-bottom: 1rem; position: relative; z-index: 1; }
+        .contact-section p { color: var(--text-muted); margin-bottom: 2.5rem; position: relative; z-index: 1; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .contact-grid { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; position: relative; z-index: 1; }
+        .contact-item { display: flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            padding: 1rem 1.5rem; border-radius: 14px; text-decoration: none; color: var(--text); transition: all 0.3s; font-weight: 500; }
+        .contact-item:hover { border-color: var(--accent-pink); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,107,157,0.15); }
+        .contact-item i { font-size: 1.3rem; color: var(--accent-pink); }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 3rem 5%; color: var(--text-dim); font-size: 0.9rem; border-top: 1px solid var(--border); }
+        footer a { color: var(--accent-pink); text-decoration: none; transition: color 0.3s; }
+        footer a:hover { color: var(--accent-magenta); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; } .hero-stats { gap: 1rem; } .stat-item { padding: 0.8rem 1.2rem; }
+            .stat-number { font-size: 1.8rem; } .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .nav-links { display: none; } .contact-section { padding: 2.5rem 1.5rem; }
+            .contact-grid { flex-direction: column; align-items: stretch; } .project-header { flex-direction: column; }
+            .project-kpis { width: 100%; justify-content: center; } section { padding: 60px 5%; }
+            .section-title { font-size: 2rem; } }
+
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .scale-in { opacity: 0; transform: scale(0.9); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .scale-in.visible { opacity: 1; transform: scale(1); }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-light); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-pink); }
+
+        /* LANGUAGE */
+        [data-lang] { display: none; }
+        [data-lang].active { display: block; }
+        .nav-links a span[data-lang] { display: none; }
+        .nav-links a span[data-lang].active { display: inline; }
+        .stat-item .stat-label[data-lang].active { display: block; }
+        .stat-item .stat-label[data-lang] { display: none; }
+        .kpi-box .kpi-label[data-lang].active { display: block; }
+        .kpi-box .kpi-label[data-lang] { display: none; }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="bg-mesh"></div>
+
+    <nav class="navbar">
+        <a href="#" class="logo">SK.</a>
+        <ul class="nav-links">
+            <li><a href="#inicio" class="active" data-nav="inicio"><span data-lang="es" class="active">Inicio</span><span data-lang="en">Home</span><span data-lang="it">Home</span></a></li>
+            <li><a href="#perfiles" data-nav="perfiles"><span data-lang="es" class="active">Perfiles</span><span data-lang="en">Profiles</span><span data-lang="it">Profili</span></a></li>
+            <li><a href="#proyectos" data-nav="proyectos"><span data-lang="es" class="active">Proyectos</span><span data-lang="en">Projects</span><span data-lang="it">Progetti</span></a></li>
+            <li><a href="#contacto" data-nav="contacto"><span data-lang="es" class="active">Contacto</span><span data-lang="en">Contact</span><span data-lang="it">Contatto</span></a></li>
+        </ul>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLang('es')">ES</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" onclick="setLang('it')">IT</button>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="hero-glow pink"></div>
+        <div class="hero-glow cyan"></div>
+        <div class="hero-glow gold"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span style="color:var(--accent-pink)">●</span>
+                <span data-lang="es" class="active">Disponible para oportunidades remotas globales</span>
+                <span data-lang="en">Available for global remote opportunities</span>
+                <span data-lang="it">Disponibile per opportunità remote globali</span>
+            </div>
+            <h1>Sabrina Kaduk<br><span class="gradient-text">Operations · Growth Marketing · QA</span></h1>
+            <p class="hero-subtitle">
+                <span data-lang="es" class="active">Analista de Operaciones + Comunicadora Estratégica</span>
+                <span data-lang="en">Operations Analyst + Strategic Communicator</span>
+                <span data-lang="it">Analista di Operazioni + Comunicatrice Strategica</span>
+            </p>
+            <p class="hero-pitch">
+                <span data-lang="es" class="active">
+                    Profesional con <strong>10+ años de experiencia</strong> combinando análisis de operaciones, 
+                    comunicación estratégica y marketing digital. Transformo datos complejos en decisiones 
+                    accionables y conecto con personas con empatía y fluidez. Nativa en español, 
+                    intermedio-avanzado en inglés e intermedio en italiano.
+                </span>
+                <span data-lang="en">
+                    Professional with <strong>10+ years of experience</strong> combining operations analysis, 
+                    strategic communication and digital marketing. I transform complex data into actionable 
+                    decisions and connect with people with empathy and fluency. Native Spanish, 
+                    upper-intermediate English and intermediate Italian.
+                </span>
+                <span data-lang="it">
+                    Professionista con <strong>oltre 10 anni di esperienza</strong> che combina analisi delle operazioni, 
+                    comunicazione strategica e marketing digitale. Trasformo dati complessi in decisioni 
+                    actionable e mi connetto con le persone con empatia e fluidità. Madrelingua spagnola, 
+                    inglese intermedio-avanzato e italiano intermedio.
+                </span>
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label" data-lang="es" class="active">Años de Experiencia</span>
+                    <span class="stat-label" data-lang="en">Years Experience</span>
+                    <span class="stat-label" data-lang="it">Anni di Esperienza</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label" data-lang="es" class="active">Idiomas</span>
+                    <span class="stat-label" data-lang="en">Languages</span>
+                    <span class="stat-label" data-lang="it">Lingue</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label" data-lang="es" class="active">Tasa de Éxito</span>
+                    <span class="stat-label" data-lang="en">Success Rate</span>
+                    <span class="stat-label" data-lang="it">Tasso di Successo</span>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#proyectos" class="btn btn-primary">
+                    <span data-lang="es" class="active">Ver Proyectos</span>
+                    <span data-lang="en">View Projects</span>
+                    <span data-lang="it">Vedi Progetti</span>
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+                <a href="#contacto" class="btn btn-outline">
+                    <span data-lang="es" class="active">Contactar</span>
+                    <span data-lang="en">Contact</span>
+                    <span data-lang="it">Contatta</span>
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-mi">
+        <div class="section-header fade-in">
+            <span class="section-tag"><i class="fas fa-user"></i> <span data-lang="es" class="active">Sobre Mí</span><span data-lang="en">About Me</span><span data-lang="it">Chi Sono</span></span>
+            <h2 class="section-title" data-lang="es" class="active">Mi Historia</h2>
+            <h2 class="section-title" data-lang="en">My Story</h2>
+            <h2 class="section-title" data-lang="it">La Mia Storia</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-image fade-in">
+                <img src="assets/profile.jpg" alt="Sabrina Kaduk">
+            </div>
+            <div class="about-content fade-in">
+                <h2 data-lang="es" class="active">Conectando Datos con Personas</h2>
+                <h2 data-lang="en">Connecting Data with People</h2>
+                <h2 data-lang="it">Connettere Dati con Persone</h2>
+
+                <p data-lang="es" class="active">Con más de <strong>10 años de experiencia</strong> en operaciones y comunicación, he desarrollado una habilidad única: transformar datos complejos en decisiones claras y conectar con personas con empatía y fluidez.</p>
+                <p data-lang="en">With over <strong>10 years of experience</strong> in operations and communication, I have developed a unique skill: transforming complex data into clear decisions and connecting with people with empathy and fluency.</p>
+                <p data-lang="it">Con oltre <strong>10 anni di esperienza</strong> nelle operazioni e nella comunicazione, ho sviluppato un'abilità unica: trasformare dati complessi in decisioni chiare e connettermi con le persone con empatia e fluidità.</p>
+
+                <p data-lang="es" class="active">He trabajado con marcas líderes como <strong>YPF, Falabella, Prosegur</strong> y startups en crecimiento, liderando equipos remotos multiculturales y optimizando procesos que impactan directamente en el resultado de negocio.</p>
+                <p data-lang="en">I have worked with leading brands such as <strong>YPF, Falabella, Prosegur</strong> and growing startups, leading multicultural remote teams and optimizing processes that directly impact business results.</p>
+                <p data-lang="it">Ho lavorato con marchi leader come <strong>YPF, Falabella, Prosegur</strong> e startup in crescita, guidando team remoti multiculturali e ottimizzando processi che impattano direttamente sui risultati di business.</p>
+
+                <p data-lang="es" class="active">Hoy combino mi background en <strong>operaciones</strong> con mi formación en <strong>growth marketing</strong> y <strong>QA testing</strong> para ofrecer una propuesta de valor integral.</p>
+                <p data-lang="en">Today I combine my background in <strong>operations</strong> with my training in <strong>growth marketing</strong> and <strong>QA testing</strong> to offer a comprehensive value proposition.</p>
+                <p data-lang="it">Oggi combino il mio background in <strong>operazioni</strong> con la mia formazione in <strong>growth marketing</strong> e <strong>QA testing</strong> per offrire una proposta di valore integrale.</p>
+
+                <div class="languages">
+                    <div class="lang-item">
+                        <span>🇪🇸 Español</span>
+                        <div class="lang-level"><div class="lang-level-fill" style="width:100%"></div></div>
+                        <span style="font-size:0.8rem; color:var(--text-dim)">Nativo</span>
+                    </div>
+                    <div class="lang-item">
+                        <span>🇬🇧 English</span>
+                        <div class="lang-level"><div class="lang-level-fill" style="width:75%"></div></div>
+                        <span style="font-size:0.8rem; color:var(--text-dim)">Upper-Int</span>
+                    </div>
+                    <div class="lang-item">
+                        <span>🇮🇹 Italiano</span>
+                        <div class="lang-level"><div class="lang-level-fill" style="width:50%"></div></div>
+                        <span style="font-size:0.8rem; color:var(--text-dim)">Intermedio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="perfiles">
+        <div class="section-header fade-in">
+            <span class="section-tag"><i class="fas fa-bolt"></i> <span data-lang="es" class="active">Competencias</span><span data-lang="en">Skills</span><span data-lang="it">Competenze</span></span>
+            <h2 class="section-title" data-lang="es" class="active">Habilidades Clave</h2>
+            <h2 class="section-title" data-lang="en">Key Skills</h2>
+            <h2 class="section-title" data-lang="it">Competenze Chiave</h2>
+            <p class="section-subtitle" data-lang="es" class="active">Stack técnico actualizado con las herramientas más demandadas en 2026</p>
+            <p class="section-subtitle" data-lang="en">Updated technical stack with the most in-demand tools in 2026</p>
+            <p class="section-subtitle" data-lang="it">Stack tecnico aggiornato con gli strumenti più richiesti nel 2026</p>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-card fade-in">
+                <h3><i class="fas fa-code"></i> Hard Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag trending">Python / Data Analysis</span>
+                    <span class="skill-tag trending">AI / GenAI / Automation</span>
+                    <span class="skill-tag highlight">SQL</span>
+                    <span class="skill-tag highlight">Power BI</span>
+                    <span class="skill-tag">Excel Avanzado</span>
+                    <span class="skill-tag trending">Playwright / API Testing</span>
+                    <span class="skill-tag highlight">Jira</span>
+                    <span class="skill-tag">Confluence</span>
+                    <span class="skill-tag trending">Retool / Low-Code</span>
+                    <span class="skill-tag">Google Ads</span>
+                    <span class="skill-tag">Meta Commerce</span>
+                    <span class="skill-tag">TikTok Shop</span>
+                    <span class="skill-tag">Instagram Shop</span>
+                    <span class="skill-tag">CRO / Funnel Analysis</span>
+                    <span class="skill-tag">KPI Dashboards</span>
+                    <span class="skill-tag">Testing Manual</span>
+                    <span class="skill-tag">Bug Reporting</span>
+                    <span class="skill-tag">Scrum / Kanban</span>
+                    <span class="skill-tag">Zapier / Make</span>
+                    <span class="skill-tag">Customer.io</span>
+                    <span class="skill-tag">Attribution Modeling</span>
+                    <span class="skill-tag">Cloud Basics (AWS/GCP)</span>
+                </div>
+            </div>
+
+            <div class="skill-card fade-in">
+                <h3><i class="fas fa-heart"></i> Soft Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag highlight">Comunicación Asertiva</span>
+                    <span class="skill-tag">Empatía / Escucha Activa</span>
+                    <span class="skill-tag highlight">Resolución de Conflictos</span>
+                    <span class="skill-tag">Gestión del Tiempo</span>
+                    <span class="skill-tag highlight">Negociación</span>
+                    <span class="skill-tag">Trabajo Remoto</span>
+                    <span class="skill-tag">Liderazgo Distribuido</span>
+                    <span class="skill-tag">Coordinación Multicultural</span>
+                    <span class="skill-tag">Pensamiento Analítico</span>
+                    <span class="skill-tag">Adaptabilidad</span>
+                    <span class="skill-tag">Orientación a Resultados</span>
+                    <span class="skill-tag">Curiosidad Tecnológica</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-chart fade-in">
+            <img src="assets/chart_timeline.png" alt="Timeline de Experiencia">
+        </div>
+
+        <div class="timeline-chart fade-in">
+            <img src="assets/chart_skills.png" alt="Radar de Competencias">
+        </div>
+    </section>
+
+    <section id="proyectos">
+        <div class="section-header fade-in">
+            <span class="section-tag"><i class="fas fa-briefcase"></i> <span data-lang="es" class="active">Portafolio</span><span data-lang="en">Portfolio</span><span data-lang="it">Portafoglio</span></span>
+            <h2 class="section-title" data-lang="es" class="active">Proyectos Destacados</h2>
+            <h2 class="section-title" data-lang="en">Featured Projects</h2>
+            <h2 class="section-title" data-lang="it">Progetti in Evidenza</h2>
+            <p class="section-subtitle" data-lang="es" class="active">Casos reales de empresas donde trabajé, aplicando el método STAR</p>
+            <p class="section-subtitle" data-lang="en">Real cases from companies I worked for, applying the STAR method</p>
+            <p class="section-subtitle" data-lang="it">Casi reali di aziende per cui ho lavorato, applicando il metodo STAR</p>
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- PROSEGUR -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title-area">
+                        <span class="project-category"><i class="fas fa-shield-alt"></i> Prosegur</span>
+                        <h3 data-lang="es" class="active">Optimización de Cash Flow y Remesas</h3>
+                        <h3 data-lang="en">Cash Flow and Remittance Optimization</h3>
+                        <h3 data-lang="it">Ottimizzazione del Cash Flow e delle Rimesse</h3>
+                    </div>
+                    <div class="project-kpis">
+                        <div class="kpi-box">
+                            <span class="kpi-number">30%→25%</span>
+                            <span class="kpi-label" data-lang="es" class="active">Tasa Remesa</span>
+                            <span class="kpi-label" data-lang="en">Remittance Rate</span>
+                            <span class="kpi-label" data-lang="it">Tasso Rimessa</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">0</span>
+                            <span class="kpi-label" data-lang="es" class="active">Errores Cash-Out</span>
+                            <span class="kpi-label" data-lang="en">Cash-Out Errors</span>
+                            <span class="kpi-label" data-lang="it">Errori Cash-Out</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">-17%</span>
+                            <span class="kpi-label" data-lang="es" class="active">Reducción</span>
+                            <span class="kpi-label" data-lang="en">Reduction</span>
+                            <span class="kpi-label" data-lang="it">Riduzione</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-body">
+                    <div class="star-grid">
+                        <div class="star-item">
+                            <h4><i class="fas fa-search"></i> <span data-lang="es" class="active">El Problema</span><span data-lang="en">The Problem</span><span data-lang="it">Il Problema</span></h4>
+                            <p data-lang="es" class="active">Prosegur operaba con una tasa de remesa del 30% en procesos de cash management, generando pérdidas significativas. No existía visibilidad en tiempo real ni estandarización de procesos.</p>
+                            <p data-lang="en">Prosegur operated with a 30% remittance rate in cash management processes, generating significant losses. There was no real-time visibility or process standardization.</p>
+                            <p data-lang="it">Prosegur operava con un tasso di rimessa del 30% nei processi di cash management, generando perdite significative. Non esisteva visibilità in tempo reale né standardizzazione dei processi.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-bolt"></i> <span data-lang="es" class="active">Mi Acción</span><span data-lang="en">My Action</span><span data-lang="it">La Mia Azione</span></h4>
+                            <p data-lang="es" class="active">Diseñé dashboards en Excel avanzado, documenté flujos en Confluence, y coordiné equipos remotos vía Jira. Implementé validaciones automáticas y alertas de anomalías.</p>
+                            <p data-lang="en">I designed dashboards in advanced Excel, documented flows in Confluence, and coordinated remote teams via Jira. I implemented automatic validations and anomaly alerts.</p>
+                            <p data-lang="it">Ho progettato dashboard in Excel avanzato, documentato flussi in Confluence e coordinato team remoti via Jira. Ho implementato validazioni automatiche e alert anomalie.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-chart-line"></i> <span data-lang="es" class="active">El Resultado</span><span data-lang="en">The Result</span><span data-lang="it">Il Risultato</span></h4>
+                            <p data-lang="es" class="active">Reducción del 30% al 25% en tasa de remesa, cero errores de cash-out, y visibilidad en tiempo real para dirección ejecutiva mediante dashboards semanales.</p>
+                            <p data-lang="en">Reduction from 30% to 25% in remittance rate, zero cash-out errors, and real-time visibility for executive management through weekly dashboards.</p>
+                            <p data-lang="it">Riduzione dal 30% al 25% nel tasso di rimessa, zero errori cash-out e visibilità in tempo reale per la direzione esecutiva attraverso dashboard settimanali.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-chart">
+                        <img src="assets/chart_prosegur.png" alt="Gráfico Prosegur">
+                    </div>
+
+                    <div class="project-tools">
+                        <span class="tool-tag"><i class="fas fa-file-excel"></i> Excel Avanzado</span>
+                        <span class="tool-tag"><i class="fas fa-chart-pie"></i> Power BI</span>
+                        <span class="tool-tag"><i class="fas fa-tasks"></i> Jira</span>
+                        <span class="tool-tag"><i class="fas fa-book"></i> Confluence</span>
+                        <span class="tool-tag"><i class="fas fa-cogs"></i> Retool</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FALABELLA/FPAY -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title-area">
+                        <span class="project-category"><i class="fas fa-shopping-bag"></i> Falabella / FPAY</span>
+                        <h3 data-lang="es" class="active">Escalamiento de Onboarding Digital</h3>
+                        <h3 data-lang="en">Digital Onboarding Scaling</h3>
+                        <h3 data-lang="it">Scaling dell'Onboarding Digitale</h3>
+                    </div>
+                    <div class="project-kpis">
+                        <div class="kpi-box">
+                            <span class="kpi-number">45→100</span>
+                            <span class="kpi-label" data-lang="es" class="active">Casos/Día</span>
+                            <span class="kpi-label" data-lang="en">Cases/Day</span>
+                            <span class="kpi-label" data-lang="it">Casi/Giorno</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">98%</span>
+                            <span class="kpi-label" data-lang="es" class="active">Tasa Éxito</span>
+                            <span class="kpi-label" data-lang="en">Success Rate</span>
+                            <span class="kpi-label" data-lang="it">Tasso Successo</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">45→20min</span>
+                            <span class="kpi-label" data-lang="es" class="active">Tiempo/Cliente</span>
+                            <span class="kpi-label" data-lang="en">Time/Client</span>
+                            <span class="kpi-label" data-lang="it">Tempo/Cliente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-body">
+                    <div class="star-grid">
+                        <div class="star-item">
+                            <h4><i class="fas fa-search"></i> <span data-lang="es" class="active">El Problema</span><span data-lang="en">The Problem</span><span data-lang="it">Il Problema</span></h4>
+                            <p data-lang="es" class="active">El onboarding de clientes para la billetera digital FPAY era manual y no escalaba. Con crecimiento acelerado, el equipo no podía mantener calidad ni tiempos de respuesta.</p>
+                            <p data-lang="en">Customer onboarding for the FPAY digital wallet was manual and didn't scale. With accelerated growth, the team couldn't maintain quality or response times.</p>
+                            <p data-lang="it">L'onboarding dei clienti per il portafoglio digitale FPAY era manuale e non scalava. Con la crescita accelerata, il team non riusciva a mantenere qualità e tempi di risposta.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-bolt"></i> <span data-lang="es" class="active">Mi Acción</span><span data-lang="en">My Action</span><span data-lang="it">La Mia Azione</span></h4>
+                            <p data-lang="es" class="active">Documenté flujos en Jira/Confluence bajo metodología Ágil, creé templates de respuesta, y capacité al equipo en el nuevo proceso. Implementé macros de validación automática.</p>
+                            <p data-lang="en">I documented flows in Jira/Confluence under Agile methodology, created response templates, and trained the team in the new process. I implemented automatic validation macros.</p>
+                            <p data-lang="it">Ho documentato flussi in Jira/Confluence sotto metodologia Agile, creato template di risposta e formato il team nel nuovo processo. Ho implementato macro di validazione automatica.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-chart-line"></i> <span data-lang="es" class="active">El Resultado</span><span data-lang="en">The Result</span><span data-lang="it">Il Risultato</span></h4>
+                            <p data-lang="es" class="active">Escalamiento de 45 a 100 casos/día con 98% de éxito. Reducción del tiempo de onboarding de 45 a 20 minutos por cliente. Eliminación del 90% de retrabajo.</p>
+                            <p data-lang="en">Scaling from 45 to 100 cases/day with 98% success rate. Reduction of onboarding time from 45 to 20 minutes per client. Elimination of 90% of rework.</p>
+                            <p data-lang="it">Scaling da 45 a 100 casi/giorno con 98% di successo. Riduzione del tempo di onboarding da 45 a 20 minuti per cliente. Eliminazione del 90% di lavoro ripetuto.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-chart">
+                        <img src="assets/chart_falabella.png" alt="Gráfico Falabella">
+                    </div>
+
+                    <div class="project-tools">
+                        <span class="tool-tag"><i class="fas fa-tasks"></i> Jira</span>
+                        <span class="tool-tag"><i class="fas fa-book"></i> Confluence</span>
+                        <span class="tool-tag"><i class="fas fa-sync"></i> Scrum</span>
+                        <span class="tool-tag"><i class="fas fa-file-alt"></i> Documentación</span>
+                        <span class="tool-tag"><i class="fas fa-users"></i> Capacitación</span>
+                    </div>
+
+                    <div class="project-table-container">
+                        <input type="text" class="table-search" placeholder="🔍 Buscar métricas..." onkeyup="filterTable(this, 'table-falabella')">
+                        <table class="data-table" id="table-falabella">
+                            <thead><tr><th>Métrica</th><th>Antes</th><th>Después</th><th>Mejora</th></tr></thead>
+                            <tbody>
+                                <tr><td>Casos procesados/día</td><td>45</td><td>100</td><td>+122%</td></tr>
+                                <tr><td>Tiempo por cliente</td><td>45 min</td><td>20 min</td><td>-56%</td></tr>
+                                <tr><td>Tasa de éxito</td><td>85%</td><td>98%</td><td>+13%</td></tr>
+                                <tr><td>Reprocesos</td><td>15%</td><td>1.5%</td><td>-90%</td></tr>
+                                <tr><td>Satisfacción cliente</td><td>3.2/5</td><td>4.6/5</td><td>+44%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YPF -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title-area">
+                        <span class="project-category"><i class="fas fa-gas-pump"></i> YPF</span>
+                        <h3 data-lang="es" class="active">Dashboard Ejecutivo de Ventas Históricas</h3>
+                        <h3 data-lang="en">Executive Sales History Dashboard</h3>
+                        <h3 data-lang="it">Dashboard Esecutivo Vendite Storiche</h3>
+                    </div>
+                    <div class="project-kpis">
+                        <div class="kpi-box">
+                            <span class="kpi-number">3d→2h</span>
+                            <span class="kpi-label" data-lang="es" class="active">Tiempo Reporte</span>
+                            <span class="kpi-label" data-lang="en">Report Time</span>
+                            <span class="kpi-label" data-lang="it">Tempo Report</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">12</span>
+                            <span class="kpi-label" data-lang="es" class="active">Gerencias</span>
+                            <span class="kpi-label" data-lang="en">Departments</span>
+                            <span class="kpi-label" data-lang="it">Direzioni</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">+13.5%</span>
+                            <span class="kpi-label" data-lang="es" class="active">Crecimiento YoY</span>
+                            <span class="kpi-label" data-lang="en">YoY Growth</span>
+                            <span class="kpi-label" data-lang="it">Crescita YoY</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-body">
+                    <div class="star-grid">
+                        <div class="star-item">
+                            <h4><i class="fas fa-search"></i> <span data-lang="es" class="active">El Problema</span><span data-lang="en">The Problem</span><span data-lang="it">Il Problema</span></h4>
+                            <p data-lang="es" class="active">YPF carecía de visibilidad consolidada de ventas históricas. Los reportes tardaban 3 días en generarse manualmente desde SAP y múltiples fuentes de datos.</p>
+                            <p data-lang="en">YPF lacked consolidated visibility of historical sales. Reports took 3 days to generate manually from SAP and multiple data sources.</p>
+                            <p data-lang="it">YPF mancava di visibilità consolidata delle vendite storiche. I report impiegavano 3 giorni per essere generati manualmente da SAP e multiple fonti dati.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-bolt"></i> <span data-lang="es" class="active">Mi Acción</span><span data-lang="en">My Action</span><span data-lang="it">La Mia Azione</span></h4>
+                            <p data-lang="es" class="active">Consolidé datos de SAP, CRM y Excel en un dashboard de Power BI. Automatizé reportes semanales y creé vistas personalizadas para 12 gerencias comerciales.</p>
+                            <p data-lang="en">I consolidated data from SAP, CRM and Excel into a Power BI dashboard. I automated weekly reports and created custom views for 12 commercial departments.</p>
+                            <p data-lang="it">Ho consolidato dati da SAP, CRM e Excel in un dashboard Power BI. Ho automatizzato report settimanali e creato viste personalizzate per 12 direzioni commerciali.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-chart-line"></i> <span data-lang="es" class="active">El Resultado</span><span data-lang="en">The Result</span><span data-lang="it">Il Risultato</span></h4>
+                            <p data-lang="es" class="active">Reducción de 3 días a 2 horas en generación de reportes. Visibilidad en tiempo real para 12 gerencias. Crecimiento de ventas del 13.5% año sobre año.</p>
+                            <p data-lang="en">Reduction from 3 days to 2 hours in report generation. Real-time visibility for 12 departments. Sales growth of 13.5% year over year.</p>
+                            <p data-lang="it">Riduzione da 3 giorni a 2 ore nella generazione dei report. Visibilità in tempo reale per 12 direzioni. Crescita delle vendite del 13.5% anno su anno.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-chart">
+                        <img src="assets/chart_ypf.png" alt="Gráfico YPF">
+                    </div>
+
+                    <div class="project-tools">
+                        <span class="tool-tag"><i class="fas fa-chart-bar"></i> Power BI</span>
+                        <span class="tool-tag"><i class="fas fa-database"></i> SAP</span>
+                        <span class="tool-tag"><i class="fas fa-users"></i> CRM</span>
+                        <span class="tool-tag"><i class="fas fa-file-excel"></i> Excel</span>
+                        <span class="tool-tag"><i class="fas fa-sync"></i> Automatización</span>
+                    </div>
+
+                    <div class="project-table-container">
+                        <input type="text" class="table-search" placeholder="🔍 Buscar ventas..." onkeyup="filterTable(this, 'table-ypf')">
+                        <table class="data-table" id="table-ypf">
+                            <thead><tr><th>Mes</th><th>Ventas 2023 (M$)</th><th>Ventas 2024 (M$)</th><th>Variación</th></tr></thead>
+                            <tbody>
+                                <tr><td>Enero</td><td>12.5</td><td>13.2</td><td style="color:var(--accent-cyan)">+5.6%</td></tr>
+                                <tr><td>Febrero</td><td>11.8</td><td>12.5</td><td style="color:var(--accent-cyan)">+5.9%</td></tr>
+                                <tr><td>Marzo</td><td>14.2</td><td>15.1</td><td style="color:var(--accent-cyan)">+6.3%</td></tr>
+                                <tr><td>Abril</td><td>13.5</td><td>14.8</td><td style="color:var(--accent-cyan)">+9.6%</td></tr>
+                                <tr><td>Mayo</td><td>15.1</td><td>16.5</td><td style="color:var(--accent-cyan)">+9.3%</td></tr>
+                                <tr><td>Junio</td><td>14.8</td><td>16.2</td><td style="color:var(--accent-cyan)">+9.5%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-COMMERCE -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title-area">
+                        <span class="project-category"><i class="fas fa-shopping-cart"></i> E-Commerce</span>
+                        <h3 data-lang="es" class="active">Optimización de Funnel de Conversión</h3>
+                        <h3 data-lang="en">Conversion Funnel Optimization</h3>
+                        <h3 data-lang="it">Ottimizzazione del Funnel di Conversione</h3>
+                    </div>
+                    <div class="project-kpis">
+                        <div class="kpi-box">
+                            <span class="kpi-number">+98%</span>
+                            <span class="kpi-label" data-lang="es" class="active">Conversiones</span>
+                            <span class="kpi-label" data-lang="en">Conversions</span>
+                            <span class="kpi-label" data-lang="it">Conversioni</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">+50%</span>
+                            <span class="kpi-label" data-lang="es" class="active">Carrito</span>
+                            <span class="kpi-label" data-lang="en">Cart Adds</span>
+                            <span class="kpi-label" data-lang="it">Carrello</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">2.4%</span>
+                            <span class="kpi-label" data-lang="es" class="active">Tasa Final</span>
+                            <span class="kpi-label" data-lang="en">Final Rate</span>
+                            <span class="kpi-label" data-lang="it">Tasso Finale</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-body">
+                    <div class="star-grid">
+                        <div class="star-item">
+                            <h4><i class="fas fa-search"></i> <span data-lang="es" class="active">El Problema</span><span data-lang="en">The Problem</span><span data-lang="it">Il Problema</span></h4>
+                            <p data-lang="es" class="active">Una tienda online tenía un funnel de conversión deficiente: del 100% de visitantes solo el 1.2% completaba compra. El checkout era confuso y no había recuperación de carritos abandonados.</p>
+                            <p data-lang="en">An online store had a poor conversion funnel: out of 100% visitors only 1.2% completed a purchase. The checkout was confusing and there was no abandoned cart recovery.</p>
+                            <p data-lang="it">Un negozio online aveva un funnel di conversione scarso: solo l'1.2% dei visitatori completava un acquisto. Il checkout era confusionario e non c'era recupero carrelli abbandonati.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-bolt"></i> <span data-lang="es" class="active">Mi Acción</span><span data-lang="en">My Action</span><span data-lang="it">La Mia Azione</span></h4>
+                            <p data-lang="es" class="active">Analicé el funnel con Google Analytics 4, implementé heatmaps, simplifiqué el checkout de 5 a 3 pasos, y configuré flujos de email automation con Customer.io para carritos abandonados.</p>
+                            <p data-lang="en">I analyzed the funnel with Google Analytics 4, implemented heatmaps, simplified checkout from 5 to 3 steps, and set up email automation flows with Customer.io for abandoned carts.</p>
+                            <p data-lang="it">Ho analizzato il funnel con Google Analytics 4, implementato heatmaps, semplificato il checkout da 5 a 3 passaggi e configurato flussi di email automation con Customer.io per carrelli abbandonati.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-chart-line"></i> <span data-lang="es" class="active">El Resultado</span><span data-lang="en">The Result</span><span data-lang="it">Il Risultato</span></h4>
+                            <p data-lang="es" class="active">Aumento del 98% en conversiones (1.2%→2.4%), +50% en adiciones al carrito, y recuperación del 15% de carritos abandonados vía email automation.</p>
+                            <p data-lang="en">98% increase in conversions (1.2%→2.4%), +50% in cart additions, and recovery of 15% of abandoned carts via email automation.</p>
+                            <p data-lang="it">Aumento del 98% nelle conversioni (1.2%→2.4%), +50% negli aggiungi al carrello e recupero del 15% dei carrelli abbandonati via email automation.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-chart">
+                        <img src="assets/chart_ecommerce.png" alt="Gráfico E-Commerce Funnel">
+                    </div>
+
+                    <div class="project-tools">
+                        <span class="tool-tag"><i class="fas fa-chart-pie"></i> Google Analytics 4</span>
+                        <span class="tool-tag"><i class="fas fa-fire"></i> Hotjar</span>
+                        <span class="tool-tag"><i class="fas fa-envelope"></i> Customer.io</span>
+                        <span class="tool-tag"><i class="fas fa-shopping-cart"></i> Shopify</span>
+                        <span class="tool-tag"><i class="fas fa-bolt"></i> Zapier</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GOOGLE ADS -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title-area">
+                        <span class="project-category"><i class="fas fa-bullhorn"></i> Google Ads</span>
+                        <h3 data-lang="es" class="active">Optimización de Campañas SEM</h3>
+                        <h3 data-lang="en">SEM Campaign Optimization</h3>
+                        <h3 data-lang="it">Ottimizzazione Campagne SEM</h3>
+                    </div>
+                    <div class="project-kpis">
+                        <div class="kpi-box">
+                            <span class="kpi-number">+183%</span>
+                            <span class="kpi-label" data-lang="es" class="active">CTR</span>
+                            <span class="kpi-label" data-lang="en">CTR</span>
+                            <span class="kpi-label" data-lang="it">CTR</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">-48%</span>
+                            <span class="kpi-label" data-lang="es" class="active">CPC</span>
+                            <span class="kpi-label" data-lang="en">CPC</span>
+                            <span class="kpi-label" data-lang="it">CPC</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">3.4%</span>
+                            <span class="kpi-label" data-lang="es" class="active">CTR Final</span>
+                            <span class="kpi-label" data-lang="en">Final CTR</span>
+                            <span class="kpi-label" data-lang="it">CTR Finale</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-body">
+                    <div class="star-grid">
+                        <div class="star-item">
+                            <h4><i class="fas fa-search"></i> <span data-lang="es" class="active">El Problema</span><span data-lang="en">The Problem</span><span data-lang="it">Il Problema</span></h4>
+                            <p data-lang="es" class="active">Una pyme invertía $5,000/mes en Google Ads con CTR del 1.2% y CPC de $2.50. Las campañas no tenían segmentación por intención ni remarketing configurado.</p>
+                            <p data-lang="en">An SME invested $5,000/month in Google Ads with 1.2% CTR and $2.50 CPC. Campaigns had no intent-based segmentation or remarketing configured.</p>
+                            <p data-lang="it">Una PMI investiva $5,000/mese in Google Ads con CTR dell'1.2% e CPC di $2.50. Le campagne non avevano segmentazione per intento né remarketing configurato.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-bolt"></i> <span data-lang="es" class="active">Mi Acción</span><span data-lang="en">My Action</span><span data-lang="it">La Mia Azione</span></h4>
+                            <p data-lang="es" class="active">Reestructuré campañas por funnel (awareness→consideration→conversion), implementé remarketing dinámico, y optimicé keywords con Quality Score. Configuré conversion tracking completo.</p>
+                            <p data-lang="en">I restructured campaigns by funnel (awareness→consideration→conversion), implemented dynamic remarketing, and optimized keywords with Quality Score. I set up complete conversion tracking.</p>
+                            <p data-lang="it">Ho ristrutturato le campagne per funnel (awareness→consideration→conversion), implementato remarketing dinamico e ottimizzato keyword con Quality Score. Ho configurato il conversion tracking completo.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-chart-line"></i> <span data-lang="es" class="active">El Resultado</span><span data-lang="en">The Result</span><span data-lang="it">Il Risultato</span></h4>
+                            <p data-lang="es" class="active">CTR mejoró de 1.2% a 3.4% (+183%), CPC redujo de $2.50 a $1.30 (-48%). Mismo presupuesto, 3x más conversiones. ROAS pasó de 1.8x a 4.2x.</p>
+                            <p data-lang="en">CTR improved from 1.2% to 3.4% (+183%), CPC reduced from $2.50 to $1.30 (-48%). Same budget, 3x more conversions. ROAS went from 1.8x to 4.2x.</p>
+                            <p data-lang="it">CTR migliorato dall'1.2% al 3.4% (+183%), CPC ridotto da $2.50 a $1.30 (-48%). Stesso budget, 3x più conversioni. ROAS passato da 1.8x a 4.2x.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-chart">
+                        <img src="assets/chart_googleads.png" alt="Gráfico Google Ads">
+                    </div>
+
+                    <div class="project-tools">
+                        <span class="tool-tag"><i class="fab fa-google"></i> Google Ads</span>
+                        <span class="tool-tag"><i class="fas fa-search"></i> Keyword Planner</span>
+                        <span class="tool-tag"><i class="fas fa-redo"></i> Remarketing</span>
+                        <span class="tool-tag"><i class="fas fa-chart-bar"></i> GA4</span>
+                        <span class="tool-tag"><i class="fas fa-tag"></i> Conversion Tracking</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QA + AI -->
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title-area">
+                        <span class="project-category"><i class="fas fa-robot"></i> QA + AI</span>
+                        <h3 data-lang="es" class="active">Automatización de Testing con IA</h3>
+                        <h3 data-lang="en">AI-Powered Test Automation</h3>
+                        <h3 data-lang="it">Automazione Testing con IA</h3>
+                    </div>
+                    <div class="project-kpis">
+                        <div class="kpi-box">
+                            <span class="kpi-number">-65%</span>
+                            <span class="kpi-label" data-lang="es" class="active">Tiempo Testing</span>
+                            <span class="kpi-label" data-lang="en">Testing Time</span>
+                            <span class="kpi-label" data-lang="it">Tempo Testing</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">115→37h</span>
+                            <span class="kpi-label" data-lang="es" class="active">Por Ciclo</span>
+                            <span class="kpi-label" data-lang="en">Per Cycle</span>
+                            <span class="kpi-label" data-lang="it">Per Ciclo</span>
+                        </div>
+                        <div class="kpi-box">
+                            <span class="kpi-number">3x</span>
+                            <span class="kpi-label" data-lang="es" class="active">Más Tests</span>
+                            <span class="kpi-label" data-lang="en">More Tests</span>
+                            <span class="kpi-label" data-lang="it">Più Test</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-body">
+                    <div class="star-grid">
+                        <div class="star-item">
+                            <h4><i class="fas fa-search"></i> <span data-lang="es" class="active">El Problema</span><span data-lang="en">The Problem</span><span data-lang="it">Il Problema</span></h4>
+                            <p data-lang="es" class="active">El ciclo de testing manual tomaba 115 horas por sprint. Los testers repetían tareas rutinarias y no había cobertura de regresión automatizada.</p>
+                            <p data-lang="en">The manual testing cycle took 115 hours per sprint. Testers repeated routine tasks and there was no automated regression coverage.</p>
+                            <p data-lang="it">Il ciclo di testing manuale richiedeva 115 ore per sprint. I tester ripetevano compiti routinari e non c'era copertura di regressione automatizzata.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-bolt"></i> <span data-lang="es" class="active">Mi Acción</span><span data-lang="en">My Action</span><span data-lang="it">La Mia Azione</span></h4>
+                            <p data-lang="es" class="active">Implementé Playwright para testing E2E automatizado, creé scripts de generación de casos de prueba con IA (ChatGPT API), y configuré pipelines de CI/CD con GitHub Actions.</p>
+                            <p data-lang="en">I implemented Playwright for automated E2E testing, created test case generation scripts with AI (ChatGPT API), and configured CI/CD pipelines with GitHub Actions.</p>
+                            <p data-lang="it">Ho implementato Playwright per testing E2E automatizzato, creato script di generazione casi di test con IA (ChatGPT API) e configurato pipeline CI/CD con GitHub Actions.</p>
+                        </div>
+                        <div class="star-item">
+                            <h4><i class="fas fa-chart-line"></i> <span data-lang="es" class="active">El Resultado</span><span data-lang="en">The Result</span><span data-lang="it">Il Risultato</span></h4>
+                            <p data-lang="es" class="active">Reducción del 65% en tiempo de testing (115h→37h). Triplicación de cobertura de tests. Liberación de testers para tareas de exploración y análisis de calidad.</p>
+                            <p data-lang="en">65% reduction in testing time (115h→37h). Tripled test coverage. Freed testers for exploratory tasks and quality analysis.</p>
+                            <p data-lang="it">Riduzione del 65% nel tempo di testing (115h→37h). Triplicazione della copertura dei test. Liberazione dei tester per compiti esplorativi e analisi qualità.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-chart">
+                        <img src="assets/chart_qa_ai.png" alt="Gráfico QA + AI">
+                    </div>
+
+                    <div class="project-tools">
+                        <span class="tool-tag"><i class="fas fa-vial"></i> Playwright</span>
+                        <span class="tool-tag"><i class="fas fa-robot"></i> ChatGPT API</span>
+                        <span class="tool-tag"><i class="fab fa-github"></i> GitHub Actions</span>
+                        <span class="tool-tag"><i class="fas fa-code-branch"></i> CI/CD</span>
+                        <span class="tool-tag"><i class="fas fa-bug"></i> API Testing</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="contact-section fade-in">
+            <h2 data-lang="es" class="active">¿Trabajamos Juntos?</h2>
+            <h2 data-lang="en">Shall We Work Together?</h2>
+            <h2 data-lang="it">Lavoriamo Insieme?</h2>
+            <p data-lang="es" class="active">Estoy disponible para oportunidades remotas globales. Conectemos a través de las plataformas profesionales.</p>
+            <p data-lang="en">I am available for global remote opportunities. Let's connect through professional platforms.</p>
+            <p data-lang="it">Sono disponibile per opportunità remote globali. Connettiamoci attraverso le piattaforme professionali.</p>
+
+            <div class="contact-grid">
+                <a href="https://linkedin.com/in/sabrina-kaduk" class="contact-item" target="_blank" rel="noopener">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://www.workana.com/freelancer/sabrina-kaduk" class="contact-item" target="_blank" rel="noopener">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Workana</span>
+                </a>
+                <a href="https://github.com/sabrikaduktrabajo-ctrl" class="contact-item" target="_blank" rel="noopener">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 0.85rem; opacity: 0.7;">
+                <i class="fas fa-shield-alt" style="margin-right: 0.5rem; color: var(--accent-pink);"></i>
+                <span data-lang="es" class="active">Contacto profesional únicamente a través de plataformas verificadas</span>
+                <span data-lang="en">Professional contact only through verified platforms</span>
+                <span data-lang="it">Contatto professionale solo attraverso piattaforme verificate</span>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Sabrina Kaduk. <span data-lang="es" class="active">Portfolio construido con dedicación y atención al detalle.</span><span data-lang="en">Portfolio built with dedication and attention to detail.</span><span data-lang="it">Portfolio costruito con dedizione e attenzione ai dettagli.</span></p>
+        <p style="margin-top: 0.5rem;">
+            <a href="https://github.com/sabrikaduktrabajo-ctrl/sabrinakaduk-portfolio" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <span style="margin: 0 0.5rem; color: var(--text-dim);">·</span>
+            <a href="https://linkedin.com/in/sabrina-kaduk" target="_blank" rel="noopener">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </p>
+    </footer>
+
+    <script>
+        // LANGUAGE SWITCHER
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.remove('active');
+                if (el.getAttribute('data-lang') === lang) el.classList.add('active');
+            });
+            document.documentElement.lang = lang;
+        }
+
+        // TABLE FILTER
+        function filterTable(input, tableId) {
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById(tableId);
+            if (!table) return;
+            const rows = table.getElementsByTagName('tr');
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let found = false;
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().indexOf(filter) > -1) { found = true; break; }
+                }
+                rows[i].style.display = found ? '' : 'none';
+            }
+        }
+
+        // PARTICLES
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const colors = ['#ff6b9d', '#c084fc', '#00d4aa', '#ffd700'];
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 4 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.background = colors[Math.floor(Math.random() * colors.length)];
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
+        // SCROLL ANIMATIONS
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-in, .scale-in').forEach(el => observer.observe(el));
+
+        // NAVBAR SCROLL
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // TYPING EFFECT for hero subtitle
+        const subtitles = {
+            es: 'Analista de Operaciones + Comunicadora Estratégica',
+            en: 'Operations Analyst + Strategic Communicator',
+            it: 'Analista di Operazioni + Comunicatrice Strategica'
+        };
+        let currentLang = 'es';
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const subtitleEl = document.querySelector('.hero-subtitle span.active');
+            if (!subtitleEl) return;
+            const text = subtitles[currentLang];
+            if (isDeleting) {
+                subtitleEl.textContent = text.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                subtitleEl.textContent = text.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            let typeSpeed = isDeleting ? 50 : 100;
+            if (!isDeleting && charIndex === text.length) { typeSpeed = 2000; isDeleting = true; }
+            else if (isDeleting && charIndex === 0) { isDeleting = false; typeSpeed = 500; }
+            setTimeout(typeEffect, typeSpeed);
+        }
+        // Start typing after initial load
+        setTimeout(typeEffect, 1000);
+    </script>
+</body>
+</html>
