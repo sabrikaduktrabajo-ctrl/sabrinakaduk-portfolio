@@ -177,6 +177,15 @@
   .skill-col li:last-child{border-bottom:none;}
   @media(max-width:760px){ .skill-grid{grid-template-columns:1fr;} }
 
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .testi-card{border:1px solid var(--rule); border-radius:6px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; min-height:200px;}
+  .testi-card.placeholder{border-style:dashed; color:var(--ink-dim);}
+  .testi-quote{font-size:14.5px; line-height:1.55; color:var(--ink-muted); font-style:italic;}
+  .testi-quote.placeholder-text{color:var(--ink-dim); font-style:normal;}
+  .testi-author{margin-top:18px; font-family:var(--font-mono); font-size:12px; color:var(--ink-dim);}
+  .testi-author strong{color:var(--ink); font-family:var(--font-body); font-style:normal;}
+  @media(max-width:760px){ .testi-grid{grid-template-columns:1fr;} }
+
   /* experience ledger */
   .ledger-entry{border-top:1px solid var(--rule); padding:36px 0;}
   .ledger-entry:last-child{border-bottom:1px solid var(--rule);}
@@ -353,9 +362,12 @@
       </div>
       <div class="tl-labels">
         <span style="width:32.7%">2017</span>
-        <span style="width:10.9%" data-i18n="tl_gap">pausa</span>
+        <span style="width:10.9%" data-i18n="tl_gap">Consultoría</span>
         <span style="width:26.4%">2021</span>
         <span style="width:30%" data-i18n="tl_today">2023 → hoy</span>
+      </div>
+      <div class="timeline-note" style="margin-top:14px; font-size:13px; line-height:1.5; color:var(--ink-dim);">
+        <div data-i18n="tl_gap1_note">· <strong>2020–2021:</strong> Consultoría independiente en optimización de procesos operativos y digitalización para PyMEs locales (proyectos por proyecto).</div>
       </div>
     </div>
   </div>
@@ -411,11 +423,11 @@
     <div class="ledger-entry reveal">
       <div class="ledger-head">
         <div>
-          <span class="ledger-id practice">IA · PROYECTO PERSONAL</span>
+          <span class="ledger-id practice">IA · CONSULTORÍA INDEPENDIENTE</span>
           <div class="ledger-role">AI Automation Consultant — Independiente</div>
-          <div class="ledger-period mono" data-i18n="exp_ai_period">Ago. 2026 — Presente</div>
+          <div class="ledger-period mono" data-i18n="exp_ai_period">Abr. 2026 — Presente</div>
         </div>
-        <div class="ledger-note" data-i18n="exp_ai_note">En desarrollo activo. No es un engagement corporativo — es mi portfolio técnico, construido y demostrable.</div>
+        <div class="ledger-note" data-i18n="exp_ai_note">Ayudo a fintechs y empresas digitales de alto crecimiento a reducir costos operativos y escalar adquisición mediante automatización inteligente y growth marketing. No es un engagement corporativo — es mi práctica independiente, construida y demostrable.</div>
       </div>
       <div class="ledger-body">
         <p data-i18n="exp_ai_p1">Construyendo un chatbot de onboarding KYC (Python + OpenAI API + Streamlit) con demo funcional pública: guía al usuario en verificación de identidad, responde preguntas de onboarding y <strong data-i18n="exp_ai_p1b">simula</strong> la extracción OCR de documento (no es una integración OCR de producción).</p>
@@ -534,11 +546,40 @@
   </div>
 </section>
 
+<!-- TESTIMONIOS: oculto temporalmente hasta tener recomendaciones reales conectadas.
+     Para reactivar: borrá esta línea de comentario de apertura y la de cierre (unas líneas más abajo, "FIN TESTIMONIOS")
+     una vez que hayas pegado tu link CSV en TESTIMONIALS_CSV_URL (al final del archivo). -->
+<!--
+<section id="testimonios">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow" data-i18n="testi_eyebrow">RESPALDO</div>
+      <div class="sec-title" data-i18n="testi_title">Lo que dicen de trabajar conmigo</div>
+    </div>
+    <div class="testi-grid reveal" id="testiGrid" data-loaded="false">
+      <div class="testi-card placeholder">
+        <div class="testi-quote placeholder-text" data-i18n="testi_ph1">Espacio reservado — pedí una recomendación breve a un ex manager de Prosegur, FPAY o YPF y pegala acá.</div>
+        <div class="testi-author">— <span data-i18n="testi_ph_role">Nombre, cargo · Empresa</span></div>
+      </div>
+      <div class="testi-card placeholder">
+        <div class="testi-quote placeholder-text" data-i18n="testi_ph2">Espacio reservado — un testimonio de un cliente de tu consultoría independiente en IA/automatización va perfecto acá.</div>
+        <div class="testi-author">— <span data-i18n="testi_ph_role2">Nombre, cargo · Empresa</span></div>
+      </div>
+      <div class="testi-card placeholder">
+        <div class="testi-quote placeholder-text" data-i18n="testi_ph3">Espacio reservado — una recomendación escrita en LinkedIn se puede copiar directo acá.</div>
+        <div class="testi-author">— <span data-i18n="testi_ph_role3">Nombre, cargo · Empresa</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+<!-- FIN TESTIMONIOS -->
+
 <section id="contacto">
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-eyebrow" data-i18n="contact_eyebrow">CONTACTO</div>
-      <div class="sec-title" data-i18n="contact_title">¿Trabajamos juntas?</div>
+      <div class="sec-title" data-i18n="contact_title">¿Conversamos?</div>
     </div>
     <div class="contact-grid reveal">
       <div class="contact-block">
@@ -550,7 +591,7 @@
       </div>
       <div class="contact-block">
         <h4 data-i18n="contact_platforms">Plataformas</h4>
-        <div class="contact-row"><span>LinkedIn</span><a href="https://linkedin.com/in/sabrinakaduk" target="_blank" rel="noopener">/in/sabrinakaduk</a></div>
+        <div class="contact-row"><span>LinkedIn</span><a href="https://linkedin.com/in/sabrina-kaduk" target="_blank" rel="noopener">/in/sabrina-kaduk</a></div>
         <div class="contact-row"><span>GitHub</span><a href="https://github.com/sabrikaduktrabajo-ctrl" target="_blank" rel="noopener">@sabrikaduktrabajo-ctrl</a></div>
         <div class="note-box" data-i18n="contact_status">100% remoto · Disponible para oportunidades globales en Operaciones, Automatización y AI Implementation.</div>
       </div>
@@ -562,13 +603,14 @@
   <div class="wrap foot-row">
     <span data-i18n="foot_copy">© 2026 Sabrina Kaduk</span>
     <div class="foot-links">
-      <a href="https://linkedin.com/in/sabrinakaduk" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://linkedin.com/in/sabrina-kaduk" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/sabrikaduktrabajo-ctrl" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:sabri.kaduk.trabajo@gmail.com">Email</a>
     </div>
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script>
 const i18n = {
   es: {
@@ -590,8 +632,8 @@ const i18n = {
     sk_automation:"Automatización", sk_funnel:"Optimización de Funnels", sk_onboarding:"Onboarding",
     sk_excel:"Excel Avanzado", sk_process:"Mapeo de Procesos",
     exp_eyebrow:"TRAYECTORIA", exp_title:"Experiencia, en números",
-    exp_ai_period:"Ago. 2026 — Presente",
-    exp_ai_note:"En desarrollo activo. No es un engagement corporativo — es mi portfolio técnico, construido y demostrable.",
+    exp_ai_period:"Abr. 2026 — Presente",
+    exp_ai_note:"Ayudo a fintechs y empresas digitales de alto crecimiento a reducir costos operativos y escalar adquisición mediante automatización inteligente y growth marketing. No es un engagement corporativo — es mi práctica independiente, construida y demostrable.",
     exp_ai_p1:"Construyendo un chatbot de onboarding KYC (Python + OpenAI API + Streamlit) con demo funcional pública: guía al usuario en verificación de identidad, responde preguntas de onboarding y <strong>simula</strong> la extracción OCR de documento (no es una integración OCR de producción).",
     exp_ai_p2:"En paralelo, desarrollo un dashboard predictivo de churn (Scikit-learn + Streamlit) entrenado sobre datos de fintech, con métricas y recomendaciones accionables.",
     exp_ai_link:"Ver demos en GitHub →",
@@ -604,13 +646,19 @@ const i18n = {
     exp_ypf_role:"Commercial Operations & Data Analyst",
     exp_ypf_p1:"Consolidé datos de SAP, CRM y Excel en reportes comerciales automatizados y capacité al equipo comercial en herramientas de análisis para autonomía en la toma de decisiones.",
     ledger_reportes2:"Tiempo de generación de reportes", ledger_ventas:"Crecimiento de ventas (YoY)",
-    contact_eyebrow:"CONTACTO", contact_title:"¿Trabajamos juntas?", contact_direct:"Directo",
+    contact_eyebrow:"CONTACTO", contact_title:"¿Conversamos?", contact_direct:"Directo",
     contact_note:"Actualmente en Nairobi, Kenia (GMT+3) · Facturación en Argentina · Nómada digital, disponible para adaptar horario a equipos remotos globales.",
     contact_platforms:"Plataformas",
     contact_status:"100% remoto · Disponible para oportunidades globales en Operaciones, Automatización y AI Implementation.",
     foot_copy:"© 2026 Sabrina Kaduk",
     chart_remesa_title:"Tasa de remesa (%)", chart_casos_title:"Casos procesados / día", chart_tiempo_title:"Tiempo de generación de reportes (horas)",
-    bar_before:"Antes", bar_after:"Después", bar_72h:"72h"
+    bar_before:"Antes", bar_after:"Después", bar_72h:"72h",
+    tl_gap1_note:"· <strong>2020–2021:</strong> Consultoría independiente en optimización de procesos operativos y digitalización para PyMEs locales (proyectos por proyecto).",
+    testi_eyebrow:"RESPALDO", testi_title:"Lo que dicen de trabajar conmigo",
+    testi_ph1:"Espacio reservado — pedí una recomendación breve a un ex manager de Prosegur, FPAY o YPF y pegala acá.",
+    testi_ph2:"Espacio reservado — un testimonio de un cliente de tu consultoría independiente en IA/automatización va perfecto acá.",
+    testi_ph3:"Espacio reservado — una recomendación escrita en LinkedIn se puede copiar directo acá.",
+    testi_ph_role:"Nombre, cargo · Empresa", testi_ph_role2:"Nombre, cargo · Empresa", testi_ph_role3:"Nombre, cargo · Empresa",
   },
   en: {
     nav_about:"About", nav_skills:"Skills", nav_exp:"Experience", nav_contact:"Contact", nav_status:"Available remote",
@@ -631,8 +679,8 @@ const i18n = {
     sk_automation:"Automation", sk_funnel:"Funnel Optimization", sk_onboarding:"Onboarding",
     sk_excel:"Advanced Excel", sk_process:"Process Mapping",
     exp_eyebrow:"TRACK RECORD", exp_title:"Experience, in numbers",
-    exp_ai_period:"Aug. 2026 — Present",
-    exp_ai_note:"Actively in development. Not a client engagement — this is my technical portfolio, built and demoable.",
+    exp_ai_period:"Apr. 2026 — Present",
+    exp_ai_note:"I help fintechs and high-growth digital companies cut operating costs and scale acquisition through intelligent automation and growth marketing. Not a client engagement — this is my independent practice, built and demoable.",
     exp_ai_p1:"Building a KYC onboarding chatbot (Python + OpenAI API + Streamlit) with a public working demo: guides users through identity verification, answers onboarding FAQs, and <strong>simulates</strong> ID document OCR extraction (not a production OCR integration).",
     exp_ai_p2:"In parallel, building a predictive churn dashboard (Scikit-learn + Streamlit) trained on fintech data, with metrics and actionable recommendations.",
     exp_ai_link:"See demos on GitHub →",
@@ -645,13 +693,19 @@ const i18n = {
     exp_ypf_role:"Commercial Operations & Data Analyst",
     exp_ypf_p1:"Consolidated SAP, CRM and Excel data into automated commercial reports and trained the commercial team on analytics tools for decision-making autonomy.",
     ledger_reportes2:"Report generation time", ledger_ventas:"Sales growth (YoY)",
-    contact_eyebrow:"CONTACT", contact_title:"Let's work together", contact_direct:"Direct",
+    contact_eyebrow:"CONTACT", contact_title:"Let's talk?", contact_direct:"Direct",
     contact_note:"Currently in Nairobi, Kenya (GMT+3) · Billing in Argentina · Digital nomad, flexible to align hours with global remote teams.",
     contact_platforms:"Platforms",
     contact_status:"100% remote · Available for global opportunities in Operations, Automation and AI Implementation.",
     foot_copy:"© 2026 Sabrina Kaduk",
     chart_remesa_title:"Remittance rate (%)", chart_casos_title:"Cases processed / day", chart_tiempo_title:"Report generation time (hours)",
-    bar_before:"Before", bar_after:"After", bar_72h:"72h"
+    bar_before:"Before", bar_after:"After", bar_72h:"72h",
+    tl_gap1_note:"· <strong>2020–2021:</strong> Independent consulting in operational process optimization and digitalization for local SMEs (project-based).",
+    testi_eyebrow:"SOCIAL PROOF", testi_title:"What it's like to work with me",
+    testi_ph1:"Reserved space — ask a former manager from Prosegur, FPAY or YPF for a short recommendation and paste it here.",
+    testi_ph2:"Reserved space — a testimonial from a client of your independent AI/automation consulting fits perfectly here.",
+    testi_ph3:"Reserved space — a written LinkedIn recommendation can be copied straight in here.",
+    testi_ph_role:"Name, role · Company", testi_ph_role2:"Name, role · Company", testi_ph_role3:"Name, role · Company",
   },
   it: {
     nav_about:"Chi sono", nav_skills:"Competenze", nav_exp:"Esperienza", nav_contact:"Contatto", nav_status:"Disponibile remoto",
@@ -672,8 +726,8 @@ const i18n = {
     sk_automation:"Automazione", sk_funnel:"Ottimizzazione Funnel", sk_onboarding:"Onboarding",
     sk_excel:"Excel Avanzato", sk_process:"Mappatura Processi",
     exp_eyebrow:"PERCORSO", exp_title:"Esperienza, in numeri",
-    exp_ai_period:"Ago. 2026 — Presente",
-    exp_ai_note:"In sviluppo attivo. Non è un incarico aziendale — è il mio portfolio tecnico, costruito e dimostrabile.",
+    exp_ai_period:"Apr. 2026 — Presente",
+    exp_ai_note:"Aiuto fintech e aziende digitali ad alta crescita a ridurre i costi operativi e scalare l'acquisizione tramite automazione intelligente e growth marketing. Non è un incarico aziendale — è la mia pratica indipendente, costruita e dimostrabile.",
     exp_ai_p1:"Sto costruendo un chatbot di onboarding KYC (Python + OpenAI API + Streamlit) con demo funzionante pubblica: guida l'utente nella verifica d'identità, risponde alle FAQ di onboarding e <strong>simula</strong> l'estrazione OCR del documento (non è un'integrazione OCR di produzione).",
     exp_ai_p2:"In parallelo, sviluppo una dashboard predittiva di churn (Scikit-learn + Streamlit) addestrata su dati fintech, con metriche e raccomandazioni actionable.",
     exp_ai_link:"Vedi le demo su GitHub →",
@@ -686,13 +740,19 @@ const i18n = {
     exp_ypf_role:"Commercial Operations & Data Analyst",
     exp_ypf_p1:"Ho consolidato dati SAP, CRM ed Excel in report commerciali automatizzati e formato il team commerciale sugli strumenti di analisi per l'autonomia decisionale.",
     ledger_reportes2:"Tempo di generazione report", ledger_ventas:"Crescita vendite (YoY)",
-    contact_eyebrow:"CONTATTO", contact_title:"Lavoriamo insieme?", contact_direct:"Diretto",
+    contact_eyebrow:"CONTATTO", contact_title:"Ne parliamo?", contact_direct:"Diretto",
     contact_note:"Attualmente a Nairobi, Kenya (GMT+3) · Fatturazione in Argentina · Nomade digitale, disponibile ad adattare l'orario per team remoti globali.",
     contact_platforms:"Piattaforme",
     contact_status:"100% remoto · Disponibile per opportunità globali in Operations, Automazione e AI Implementation.",
     foot_copy:"© 2026 Sabrina Kaduk",
     chart_remesa_title:"Tasso di rimessa (%)", chart_casos_title:"Casi processati / giorno", chart_tiempo_title:"Tempo di generazione report (ore)",
-    bar_before:"Prima", bar_after:"Dopo", bar_72h:"72h"
+    bar_before:"Prima", bar_after:"Dopo", bar_72h:"72h",
+    tl_gap1_note:"· <strong>2020–2021:</strong> Consulenza indipendente in ottimizzazione dei processi operativi e digitalizzazione per PMI locali (a progetto).",
+    testi_eyebrow:"REFERENZE", testi_title:"Cosa dicono di lavorare con me",
+    testi_ph1:"Spazio riservato — chiedi una breve raccomandazione a un ex manager di Prosegur, FPAY o YPF e incollala qui.",
+    testi_ph2:"Spazio riservato — una testimonianza di un cliente della tua consulenza indipendente in IA/automazione ci sta perfettamente qui.",
+    testi_ph3:"Spazio riservato — una raccomandazione scritta su LinkedIn può essere incollata direttamente qui.",
+    testi_ph_role:"Nome, ruolo · Azienda", testi_ph_role2:"Nome, ruolo · Azienda", testi_ph_role3:"Nome, ruolo · Azienda",
   }
 };
 
@@ -718,6 +778,48 @@ const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 }, {threshold:0.12});
 revealEls.forEach(el=>io.observe(el));
+
+// ——— Testimonios: se cargan automáticamente desde una hoja de Google Sheets publicada como CSV ———
+// Cómo conectarlo (una sola vez):
+// 1) Creá un Google Form para recolectar recomendaciones: preguntas "Nombre", "Cargo", "Empresa", "Recomendación".
+// 2) Las respuestas caen solas en una hoja "Respuestas de formulario" (la ves vos sola, es privada).
+// 3) Revisá esas respuestas y copiá A MANO solo las que quieras publicar a una pestaña nueva
+//    dentro del mismo Sheet llamada, por ejemplo, "Publicados", con esta fila de encabezado exacta:
+//    quote,name,role,company
+// 4) En Sheets: Archivo → Compartir → Publicar en la web → elegí la pestaña "Publicados" →
+//    formato "Valores separados por comas (.csv)" → Publicar → copiá el link que te da.
+// 5) Pegá ese link reemplazando el texto de abajo (solo una vez, acá):
+const TESTIMONIALS_CSV_URL = "PEGA_ACA_TU_LINK_CSV_PUBLICADO";
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderTestimonials(rows){
+  const grid = document.getElementById('testiGrid');
+  if(!grid || !rows || !rows.length) return; // sin datos válidos: se deja el fallback visible
+  const cards = rows
+    .filter(r => r.quote && r.quote.trim())
+    .map(r => `
+      <div class="testi-card">
+        <div class="testi-quote">${escapeHtml(r.quote)}</div>
+        <div class="testi-author">— <strong>${escapeHtml(r.name || '')}</strong>${r.role ? ', ' + escapeHtml(r.role) : ''}${r.company ? ' · ' + escapeHtml(r.company) : ''}</div>
+      </div>`).join('');
+  if(cards){
+    grid.innerHTML = cards;
+    grid.dataset.loaded = "true";
+  }
+}
+
+if(TESTIMONIALS_CSV_URL && !TESTIMONIALS_CSV_URL.includes("PEGA_ACA")){
+  fetch(TESTIMONIALS_CSV_URL)
+    .then(res => res.ok ? res.text() : Promise.reject(res.status))
+    .then(csvText => {
+      const parsed = Papa.parse(csvText, { header:true, skipEmptyLines:true });
+      renderTestimonials(parsed.data);
+    })
+    .catch(err => console.warn('No se pudo cargar la hoja de testimonios, se muestran los de ejemplo mientras tanto.', err));
+}
 </script>
 
 </body>
